@@ -10,9 +10,9 @@ const Checklist = require('../models/checklist')
 router.get('/', async (req, res) => {
     try {
         //utiliza o find para encontrar as informações no mongo
-        let checklist = await Checklist.find({})
+        let checklists = await Checklist.find({})
        
-        res.status(200).render('checklists/index', { checklist: checklist})
+        res.status(200).render('checklists/index', { checklists: checklists})
     
     } catch (error) {
         
@@ -34,10 +34,10 @@ router.post('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
    try {
-       let Checklists = await Checklists.findById(req.params.id)
-       res.status(200).render('checklists/show', { checklists: checklists})
+       let checklist = await Checklist.findById(req.params.id)
+       res.status(200).render('checklists/show', { checklist: checklist})
    } catch (error) {
-       res.status(500).render('pages/error', {error: 'Erro ao exibir as listas de tarefa'})
+       res.status(200).render('pages/error', {error: 'Erro ao exibir as listas de tarefa'})
    }
 })
 
